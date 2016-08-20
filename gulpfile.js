@@ -26,7 +26,7 @@ var config = {
 }
 
 //Start a local development server
-gulp.task('connect', function() {
+gulp.task('connect', function () {
     connect.server({
         root: ['dist'],
         port: config.port,
@@ -35,18 +35,18 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('open', ['connect'], function() {
+gulp.task('open', ['connect'], function () {
     gulp.src('dist/index.html')
-        .pipe(open('', { url: config.devBaseUrl + ':' + config.port + '/'}));
+        .pipe(open('', {url: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
-gulp.task('html', function() {
+gulp.task('html', function () {
     gulp.src(config.paths.html)
         .pipe(gulp.dest(config.paths.dist))
         .pipe(connect.reload());
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
     browserify(config.paths.mainJs)
         .transform(reactify)
         .bundle()
@@ -56,7 +56,7 @@ gulp.task('js', function() {
         .pipe(connect.reload());
 });
 
-gulp.task('css', function() {
+gulp.task('css', function () {
     gulp.src(config.paths.css)
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest(config.paths.dist + '/css'));
@@ -74,13 +74,13 @@ gulp.task('images', function () {
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', function () {
     return gulp.src(config.paths.js)
         .pipe(lint({config: 'eslint.config.json'}))
         .pipe(lint.format());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['js', 'lint']);
 });

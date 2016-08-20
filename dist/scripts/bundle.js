@@ -15,8 +15,7 @@ var cachedClearTimeout;
         cachedSetTimeout = setTimeout;
     } catch (e) {
         cachedSetTimeout = function () {
-            
-			throw new Error('setTimeout is not defined');
+            throw new Error('setTimeout is not defined');
         }
     }
     try {
