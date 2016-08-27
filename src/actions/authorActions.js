@@ -14,7 +14,7 @@ var AuthorActons = {
 
         Dispatcher.dispatch({
             actionType: ActionTypes.CREATE_AUTHOR,
-            data: newAuthor
+            author: newAuthor
         });
     }
 };
