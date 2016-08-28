@@ -25,7 +25,7 @@ var ManageAuthorPage = React.createClass({
 
     getInitialState: function () {
         return {
-            author: { id: '', firstName: '', lastName: ''},
+            author: {id: '', firstName: '', lastName: ''},
             errors: {},
             dirty: false
         };
@@ -47,7 +47,7 @@ var ManageAuthorPage = React.createClass({
         return this.setState({author: this.state.author});
     },
 
-    authorFormIsValid: function() {
+    authorFormIsValid: function () {
         var formIsValid = true;
         this.state.errors = {}; //clear any previous errors.
 
@@ -68,17 +68,22 @@ var ManageAuthorPage = React.createClass({
     saveAuthor: function (event) {
         event.preventDefault();
 
-        if (!this.authorFormIsValid()){
+        if (!this.authorFormIsValid()) {
             return;
         }
 
-        AuthorActions.createAuthor(this.state.author);
+        if (this.state.author.id) {
+            AuthorActions.updateAuthor(this.state.author);
+        } else {
+            AuthorActions.createAuthor(this.state.author);
+        }
+
         this.setState({dirty: false});
         toastr.success('Author saved.');
         this.transitionTo('authors');
     },
 
-    render: function() {
+    render: function () {
         return (
             <AuthorForm
                 author={this.state.author}
