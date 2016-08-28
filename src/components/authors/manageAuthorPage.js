@@ -65,7 +65,7 @@ var ManageAuthorPage = React.createClass({
         return formIsValid;
     },
 
-    sthor: function (event) {
+    saveAuthor: function (event) {
         event.preventDefault();
 
         if (!this.authorFormIsValid()){
