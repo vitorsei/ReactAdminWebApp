@@ -6,7 +6,6 @@ var Input = require('../common/textInput');
 
 var CourseForm = React.createClass({
     propTypes: {
-
         course:	React.PropTypes.object.isRequired,
         onSave:	React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
@@ -23,6 +22,13 @@ var CourseForm = React.createClass({
                     value={this.props.course.title}
                     onChange={this.props.onChange}
                     error={this.props.errors.title} />
+
+                <Input
+                    name="watchHref"
+                    label="URL"
+                    value={this.props.course.watchHref}
+                    onChange={this.props.onChange}
+                    error={this.props.errors.watchHref} />
 
                 <Input
                     name="author"

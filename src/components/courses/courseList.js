@@ -14,7 +14,7 @@ var CourseList = React.createClass({
             return (
                 <tr key={course.id}>
                     <td>test</td>
-                    {/*<td><a href={course.watchHref} target="_blank">Watch</a></td>*/}
+                    <td><a href={course.watchHref} target="_blank">Watch</a></td>
                     <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>
                     <td>{course.author.name}</td>
                     <td>{course.category}</td>
