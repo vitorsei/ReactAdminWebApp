@@ -12,7 +12,7 @@ var CourseList = React.createClass({
     render: function () {
         var createCourseRow = function (course) {
             return (
-                <tr key={course.id}>
+                <tr>
                     <td>test</td>
                     <td><a href={course.watchHref} target="_blank">Watch</a></td>
                     <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>

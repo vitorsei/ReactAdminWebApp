@@ -8,6 +8,18 @@ var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
 
 var ManageCoursePage = React.createClass({
+    mixins: [
+        Router.Navigation
+    ],
+
+    statics: {
+        willTransitionFrom: function (transition, component) {
+            if (component.state.dirty && !confirm('Leave without saving?')) {
+                transition.abort();
+            }
+        }
+    },
+
     getInitialState: function () {
         return {
             course: {id: '', title: '', category: '', length: '', author: {id: '', name: ''}},
@@ -58,7 +70,7 @@ var ManageCoursePage = React.createClass({
         } else {
             CourseActions.createCourse(this.state.course);
         }
-
+        this.setState({dirty: false});
         toastr.success('Course saved.');
     },
 
