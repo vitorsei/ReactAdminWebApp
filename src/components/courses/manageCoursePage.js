@@ -54,7 +54,7 @@ var ManageCoursePage = React.createClass({
         }
 
         if (this.state.course.id) {
-
+            CourseActions.updateCourse(this.state.course);
         } else {
             CourseActions.createCourse(this.state.course);
         }

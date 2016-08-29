@@ -10,18 +10,18 @@ var CourseActions = {
 
         Dispatcher.dispatch({
             actionType: ActionTypes.CREATE_COURSE,
-            author: newCourse
+            course: newCourse
+        });
+    },
+
+    updateCourse: function(course) {
+        var updatedCourse = CourseApi.saveCourse(course);
+
+        Dispatcher.dispatch({
+            actionType: ActionTypes.UPDATE_COURSE,
+            course: updatedCourse
         });
     }
-
-    // updateAuthor: function(author) {
-    //     var updatedAuthor = AuthorApi.saveAuthor(author);
-    //
-    //     Dispatcher.dispatch({
-    //         actionType: ActionTypes.UPDATE_AUTHOR,
-    //         author: updatedAuthor
-    //     });
-    // },
     //
     // deleteAuthor: function(id) {
     //     AuthorApi.deleteAuthor(id);
