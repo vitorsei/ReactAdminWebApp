@@ -38,7 +38,7 @@ Dispatcher.register(function (action) {
             CourseStore.emitChange();
             break;
         case ActionTypes.CREATE_COURSE:
-            _courses.push(action.author);
+            _courses.push(action.course);
             CourseStore.emitChange();
             break;
         case ActionTypes.UPDATE_COURSE:

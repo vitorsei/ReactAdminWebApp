@@ -72,6 +72,7 @@ var ManageCoursePage = React.createClass({
         }
         this.setState({dirty: false});
         toastr.success('Course saved.');
+        this.transitionTo('courses');
     },
 
     render: function () {
