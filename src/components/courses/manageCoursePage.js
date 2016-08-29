@@ -6,6 +6,7 @@ var CourseForm = require('./courseForm');
 var toastr = require('toastr');
 var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
+var AuthorStore = require('../../stores/authorStore');
 
 var ManageCoursePage = React.createClass({
     mixins: [
@@ -23,12 +24,15 @@ var ManageCoursePage = React.createClass({
     getInitialState: function () {
         return {
             course: {id: '', title: '', category: '', length: '', author: {id: '', name: ''}},
+            authors: [],
             errors: {},
             dirty: false
         };
     },
 
     componentWillMount: function () {
+        this.setState({authors: AuthorStore.getAllAuthors()});
+
         var courseId = this.props.params.id;
 
         if (courseId) {
@@ -41,6 +45,14 @@ var ManageCoursePage = React.createClass({
         var field = event.target.name;
         var value = event.target.value;
         this.state.course[field] = value;
+        return this.setState({course: this.state.course});
+    },
+
+    setAuthor: function (event) {
+        var field = event.target.name;
+        var value = event.target.value;
+        this.state.course.author.name = value;
+        this.state.course.author.id = value;
         return this.setState({course: this.state.course});
     },
 
@@ -81,6 +93,8 @@ var ManageCoursePage = React.createClass({
                 course={this.state.course}
                 onChange={this.setCourseState}
                 onSave={this.saveCourse}
+                authorOptions={this.state.authors}
+                dropDownOnChange={this.state.setAuthor}
                 errors={this.state.errors}
             />
         );
