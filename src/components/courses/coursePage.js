@@ -2,12 +2,12 @@
 
 var React = require('react');
 var CourseList = require('./courseList');
-var CourseApi = require('../../api/courseApi');
+var CourseStore = require('../../stores/courseStore');
 
 var CoursePage = React.createClass({
     getInitialState: function () {
       return {
-          courses: CourseApi.getAllCourses()
+          courses: CourseStore.getAllCourses()
       };
     },
 

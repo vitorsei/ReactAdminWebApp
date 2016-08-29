@@ -1,20 +1,17 @@
-/**
- * Created by VitorSeiji on 28/08/2016.
- */
-
 'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
 var AuthorApi = require('../api/authorApi');
+var CourseApi = require('../api/courseApi');
 
 var InitializeActions = {
     initialApp: function () {
         Dispatcher.dispatch({
-            actionType: ActionTypes.INITIALIZE,
+            actionType: ActionTypes.INITIALIZE_AUTHOR,
             initialData: {
-                authors: AuthorApi.getAllAuthors()
-
+                authors: AuthorApi.getAllCourses(),
+                courses: CourseApi.getAllCourses()
             }
         });
     }

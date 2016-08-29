@@ -11,7 +11,7 @@ var AuthorList = require('./authorsList');
 var AuthorPage = React.createClass({
     getInitialState: function() {
         return {
-            authors: AuthorStore.getAllAuthors()
+            authors: AuthorStore.getAllCourses()
         };
     },
 
@@ -25,7 +25,7 @@ var AuthorPage = React.createClass({
     },
 
     _onChange: function() {
-        this.setState({ authors: AuthorStore.getAllAuthors() });
+        this.setState({ authors: AuthorStore.getAllCourses() });
     },
 
     render: function() {
