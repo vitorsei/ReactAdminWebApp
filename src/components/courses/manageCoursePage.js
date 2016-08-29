@@ -4,7 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var CourseForm = require('./courseForm');
 var toastr = require('toastr');
-var CourseApi = require('../../api/courseApi');
+var CourseStore = require('../../stores/courseStore');
 
 var ManageCoursePage = React.createClass({
     getInitialState: function () {
@@ -19,7 +19,7 @@ var ManageCoursePage = React.createClass({
       var courseId = this.props.params.id;
 
         if (courseId) {
-            this.setState({course: CourseApi.getCoursesById(courseId)});
+            this.setState({course: CourseStore.getCourseById(courseId)});
         }
     },
 

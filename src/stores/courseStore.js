@@ -33,7 +33,7 @@ var CourseStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function(action) {
     switch(action.actionType) {
-        case ActionTypes.INITIALIZE_COURSE:
+        case ActionTypes.INITIALIZE:
             _courses = action.initialData.courses;
             CourseStore.emitChange();
             break;

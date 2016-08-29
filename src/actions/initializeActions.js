@@ -8,9 +8,9 @@ var CourseApi = require('../api/courseApi');
 var InitializeActions = {
     initialApp: function () {
         Dispatcher.dispatch({
-            actionType: ActionTypes.INITIALIZE_AUTHOR,
+            actionType: ActionTypes.INITIALIZE,
             initialData: {
-                authors: AuthorApi.getAllCourses(),
+                authors: AuthorApi.getAllAuthors(),
                 courses: CourseApi.getAllCourses()
             }
         });

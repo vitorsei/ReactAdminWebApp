@@ -7,9 +7,8 @@
 var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
-    INITIALIZE_AUTHOR: null,
+    INITIALIZE: null,
     CREATE_AUTHOR: null,
     UPDATE_AUTHOR: null,
-    DELETE_AUTHOR: null,
-    INITIALIZE_COURSE: null
+    DELETE_AUTHOR: null
 });
