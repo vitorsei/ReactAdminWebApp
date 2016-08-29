@@ -4,6 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var CourseForm = require('./courseForm');
 var toastr = require('toastr');
+var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
 
 var ManageCoursePage = React.createClass({
@@ -16,7 +17,7 @@ var ManageCoursePage = React.createClass({
     },
 
     componentWillMount: function () {
-      var courseId = this.props.params.id;
+        var courseId = this.props.params.id;
 
         if (courseId) {
             this.setState({course: CourseStore.getCourseById(courseId)});
@@ -31,9 +32,34 @@ var ManageCoursePage = React.createClass({
         return this.setState({course: this.state.course});
     },
 
+    courseFormIsValid: function () {
+        var formIsValid = true;
+        this.state.errors = {};
+
+        if (this.state.course.title.length < 3)
+        {
+            this.state.errors.title = 'Title must be at least 3 characters';
+            formIsValid = false;
+        }
+
+        this.setState({errors: this.state.errors});
+        return formIsValid;
+    },
+
     saveCourse: function (event) {
         event.preventDefault();
-        toastr.success('Author saved.');
+
+        if (!this.courseFormIsValid()) {
+            return;
+        }
+
+        if (this.state.course.id) {
+
+        } else {
+            CourseActions.createCourse(this.state.course);
+        }
+
+        toastr.success('Course saved.');
     },
 
     render: function () {

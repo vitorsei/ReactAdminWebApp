@@ -13,6 +13,19 @@ var CoursePage = React.createClass({
       };
     },
 
+    componentWillMount: function() {
+        CourseStore.addChangeListener(this._onChange);
+    },
+
+    //Clean up when this component is unmounted
+    componentWillUnmount: function() {
+        CourseStore.removeChangeListener(this._onChange);
+    },
+
+    _onChange: function() {
+        this.setState({ courses: CourseStore.getAllCourses() });
+    },
+
     render: function () {
         return (
             <div>
