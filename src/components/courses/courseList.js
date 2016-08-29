@@ -1,6 +1,8 @@
 "use strict";
 
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var CourseList = React.createClass({
     propTypes: {
@@ -13,8 +15,7 @@ var CourseList = React.createClass({
                 <tr key={course.id}>
                     <td>test</td>
                     <td>test</td>
-                    <td>teswt</td>
-                    <td>{course.title}</td>
+                    <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>
                     <td>{course.author.name}</td>
                     <td>{course.category}</td>
                     <td>{course.length}</td>
