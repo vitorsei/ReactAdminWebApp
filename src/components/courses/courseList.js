@@ -13,7 +13,6 @@ var CourseList = React.createClass({
         var createCourseRow = function (course) {
             return (
                 <tr key={course.id}>
-                    <td>test</td>
                     <td><a href={course.watchHref} target="_blank">Watch</a></td>
                     <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>
                     <td>{course.author.name}</td>
@@ -27,7 +26,6 @@ var CourseList = React.createClass({
             <div>
                 <table className="table">
                     <thead>
-                    <th></th>
                     <th></th>
                     <th>Title</th>
                     <th>Author</th>
