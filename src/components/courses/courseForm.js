@@ -10,13 +10,11 @@ var CourseForm = React.createClass({
         course:	React.PropTypes.object.isRequired,
         onSave:	React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
-        dropDownOnChange: React.PropTypes.func.isRequired,
-        authorOptions: React.PropTypes.array.isRequired,
+        allAuthors: React.PropTypes.array.isRequired,
         errors: React.PropTypes.object
     },
 
     render: function() {
-        debugger;
         return (
             <form>
                 <h1>Manage Author</h1>
@@ -35,12 +33,12 @@ var CourseForm = React.createClass({
                     error={this.props.errors.watchHref} />
 
                 <SelectInput
-                    name="authorId"
+                    name="author"
                     label="Author"
                     value={this.props.course.author.id}
                     defaultOption="Select Author"
-                    options={this.props.authorOptions}
-                    onChange={this.props.dropDownOnChange} error={this.props.errors.authorId}/>
+                    options={this.props.allAuthors}
+                    onChange={this.props.onChange} error={this.props.errors.author}/>
                 <Input
                     name="category"
                     label="Category"

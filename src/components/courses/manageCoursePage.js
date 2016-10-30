@@ -7,6 +7,7 @@ var toastr = require('toastr');
 var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
 var AuthorStore = require('../../stores/authorStore');
+var authorsFormattedForDropdown = require('../../selectors/selectors');
 
 var ManageCoursePage = React.createClass({
     mixins: [
@@ -31,7 +32,8 @@ var ManageCoursePage = React.createClass({
     },
 
     componentWillMount: function () {
-        this.setState({authors: AuthorStore.getAllAuthors()});
+        this.setState({authors: authorsFormattedForDropdown(AuthorStore.getAllAuthors())});
+
 
         var courseId = this.props.params.id;
 
@@ -43,17 +45,9 @@ var ManageCoursePage = React.createClass({
     setCourseState: function (event) {
         this.setState({dirty: true});
         var field = event.target.name;
-        var value = event.target.value;
-        this.state.course[field] = value;
-        return this.setState({course: this.state.course});
-    },
-
-    setAuthor: function (event) {
-        var field = event.target.name;
-        var value = event.target.value;
-        this.state.course.author.name = value;
-        this.state.course.author.id = value;
-        return this.setState({course: this.state.course});
+        var course = this.state.course;
+        course[field] = event.target.value;
+        return this.setState({course: course});
     },
 
     courseFormIsValid: function () {
@@ -93,8 +87,7 @@ var ManageCoursePage = React.createClass({
                 course={this.state.course}
                 onChange={this.setCourseState}
                 onSave={this.saveCourse}
-                authorOptions={this.state.authors}
-                dropDownOnChange={this.state.setAuthor}
+                allAuthors={this.state.authors}
                 errors={this.state.errors}
             />
         );
